@@ -1,4 +1,3 @@
-import { Link } from 'react-router-dom'
 import { styled } from 'styled-components'
 
 export const Container = styled.div`
@@ -38,15 +37,15 @@ export const Button = styled.button`
   }
 `
 
-export const FairItem = styled.li`
+export const Product = styled.li`
   background-color: #17171a;
   border: 1px solid #252529;
   border-radius: 0.5rem;
   padding: 1rem;
 
   > div {
-    display: flex;
-    justify-content: space-between;
+    display: grid;
+    grid-template-columns: 1fr 0.4fr 0.4fr 0.5fr;
     align-items: center;
     gap: 2rem;
 
@@ -70,43 +69,19 @@ export const FairItem = styled.li`
     }
   }
 
-  &:nth-child(5n + 1) .index {
-    background-color: #bb9f3a;
-  }
-
-  &:nth-child(5n + 2) .index {
-    background-color: #8cad51;
-  }
-
-  &:nth-child(5n + 3) .index {
-    background-color: #db5bbf;
-  }
-
-  &:nth-child(5n + 4) .index {
-    background-color: #e07b67;
-  }
-
-  &:nth-child(5n + 5) .index {
-    background-color: #7b94cb;
+  &.bought {
+    background-color: #111112;
+    border-color: #17171a;
   }
 `
 
-export const FairInfo = styled(Link)`
+export const ProductInfo = styled.div`
   display: flex;
   align-items: center;
   gap: 1rem;
-  width: 100%;
 
-  > div:first-child {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 999px;
-    font-size: 0.75rem;
-    font-weight: 600;
-    width: 2rem;
-    height: 2rem;
-    color: #edeaf0;
+  > input {
+    margin: 0.25rem;
   }
 
   > div {
@@ -119,11 +94,23 @@ export const FairInfo = styled(Link)`
       display: block;
       font-size: 0.75rem;
       color: #afabb6;
+      text-transform: lowercase;
+    }
+  }
+
+  &.bought {
+    > div {
+      opacity: 0.6;
+
+      > strong {
+        font-weight: 400;
+        text-decoration: line-through;
+      }
     }
   }
 `
 
-export const FairPrice = styled.div`
+export const ProductPrice = styled.div`
   display: flex;
   flex-direction: column;
   text-align: right;
@@ -137,5 +124,29 @@ export const FairPrice = styled.div`
     display: block;
     font-size: 0.75rem;
     color: #afabb6;
+  }
+
+  &.bought {
+    opacity: 0.6;
+  }
+`
+
+export const Tag = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 0.375rem;
+  padding: 0.5rem 1rem;
+  border-radius: 999px;
+  text-transform: lowercase;
+  font-size: 0.75rem;
+  font-weight: 600;
+
+  svg {
+    width: 1rem;
+    height: 1rem;
+  }
+
+  &.bought {
+    opacity: 0.6;
   }
 `

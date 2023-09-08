@@ -1,66 +1,55 @@
 import { MoreVertical, Plus } from 'lucide-react'
-import classNames from 'classnames'
-import { Input, QuantitySelect, CategorySelect } from '../../components'
+import { useEffect, useState } from 'react'
+
+import { Input, Select, SelectOption } from '@/components'
 import {
   Container,
   Form,
   Button,
-  Product,
-  ProductInfo,
-  Tag,
-  ProductPrice,
+  FairItem,
+  FairInfo,
+  FairPrice,
 } from './styles'
-import {
-  categoryBackground,
-  categoryColor,
-  categoryIcon,
-  categoryLabel,
-  measureLabel,
-} from '../../constants'
-import { useEffect, useState } from 'react'
-import { Fair, FairProduct } from '../../types'
-import { formatPrice } from '../../utils/format'
-import FairService from '../../services/fair.service'
-import FairProductService from '../../services/fairProduct.service'
 
-export const Home = () => {
-  const [fair, setFair] = useState<Fair>()
-  const [products, setProducts] = useState<FairProduct[]>([])
+import { Fair } from '@/types'
+import { formatDate, formatPrice } from '@/utils/format'
+import FairService from '@/services/fair.service'
 
-  const getFair = async () => {
+export const Home: React.FC = () => {
+  const [fairs, setFairs] = useState<Fair[]>([])
+  const [options, setOptions] = useState<SelectOption>({})
+
+  const getFairList = async () => {
     try {
-      const { data } = await FairService.getFair('64c6f8c625ae5cde0d44e78a')
+      const { data } = await FairService.getFairList()
+      const optionsFormatted: SelectOption = {}
 
-      setFair(data)
-    } catch (error) {
-      console.log(error)
-    }
-  }
+      data.forEach((fair) => {
+        optionsFormatted[`${fair._id}`] = fair.name
+      })
 
-  const getFairProducts = async () => {
-    try {
-      const { data } = await FairProductService.getFairProductList(
-        '64c6f8c625ae5cde0d44e78a',
-      )
-
-      setProducts(data)
+      setFairs(data)
+      setOptions(optionsFormatted)
     } catch (error) {
       console.log(error)
     }
   }
 
   useEffect(() => {
-    getFair()
-    getFairProducts()
+    getFairList()
   }, [])
 
   return (
     <Container>
-      <h1>{fair?.name}</h1>
+      <h1>Lista de feiras</h1>
       <Form>
-        <Input id="name" label="Item" />
-        <QuantitySelect />
-        <CategorySelect />
+        <Input id="name" label="Nome" />
+        <Select
+          label="Feira de template"
+          placeholder="Selecione a feira"
+          name="template"
+          options={options}
+        />
 
         <div>
           <Button>
@@ -69,53 +58,29 @@ export const Home = () => {
         </div>
       </Form>
       <ul>
-        {products.map((product) => (
-          <Product
-            key={product.name}
-            className={classNames({ bought: product.bought })}
-          >
+        {fairs.map((fair, index) => (
+          <FairItem key={fair.name}>
             <div>
-              <ProductInfo className={classNames({ bought: product.bought })}>
-                <input type="checkbox" checked={product.bought} />
+              <FairInfo to={`/fairs/${fair._id}`}>
+                <div className="index">{index + 1}</div>
                 <div>
-                  <strong>{product.name}</strong>
-                  <span>
-                    {product.qty}{' '}
-                    {`${measureLabel[product.measure]}${
-                      product.measure !== 'kilo' && product.qty > 1 ? 's' : ''
-                    }`}
-                  </span>
+                  <strong>{fair.name}</strong>
+                  <span>Criado em {formatDate(fair.createdAt)}</span>
                 </div>
-              </ProductInfo>
-
-              <ProductPrice className={classNames({ bought: product.bought })}>
-                <strong>{formatPrice(product.price)}</strong>
-                <span>Valor individual</span>
-              </ProductPrice>
-
-              <ProductPrice className={classNames({ bought: product.bought })}>
-                <strong>{formatPrice(product.price)}</strong>
-                <span>Valor total</span>
-              </ProductPrice>
+              </FairInfo>
 
               <div className="left">
-                <Tag
-                  style={{
-                    color: categoryColor[product.category],
-                    background: categoryBackground[product.category],
-                  }}
-                  className={classNames({ bought: product.bought })}
-                >
-                  {categoryIcon[product.category]}
-                  {categoryLabel[product.category]}
-                </Tag>
+                <FairPrice>
+                  <strong>{formatPrice(20000)}</strong>
+                  <span>Valor total</span>
+                </FairPrice>
 
                 <button>
                   <MoreVertical />
                 </button>
               </div>
             </div>
-          </Product>
+          </FairItem>
         ))}
       </ul>
     </Container>

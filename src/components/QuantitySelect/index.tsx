@@ -10,7 +10,7 @@ import {
   ArrowIcons,
   Option,
 } from './styles'
-import { measureLabel } from '../../constants'
+import { measureLabel } from '@/constants'
 
 export const QuantitySelect = () => {
   const [open, setOpen] = useState(false)

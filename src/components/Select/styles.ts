@@ -1,9 +1,9 @@
 import { styled } from 'styled-components'
 
-export const Container = styled.div`
+export const SelectContainer = styled.div`
   position: relative;
 
-  .category-select {
+  .select-input {
     position: relative;
 
     &:has(input:checked) label {
@@ -48,7 +48,7 @@ export const Label = styled.label`
   }
 `
 
-export const Select = styled.div`
+export const SelectDropdown = styled.div`
   margin-top: 0.5rem;
   display: flex;
   padding: 0.75rem;

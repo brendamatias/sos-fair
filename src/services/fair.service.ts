@@ -1,13 +1,16 @@
 import { Fair } from '../types'
 import api from './api'
 
-const DOMAIN = (fair: string) => `fairs/${fair}`
+const DOMAIN = 'fairs'
 
-const getFair = (fair: string): Promise<{ data: Fair }> =>
-  api.get(`${DOMAIN(fair)}`)
+const getFair = (id: string): Promise<{ data: Fair }> =>
+  api.get(`${DOMAIN}/${id}`)
+
+const getFairList = (): Promise<{ data: Fair[] }> => api.get(`${DOMAIN}`)
 
 const FairService = {
   getFair,
+  getFairList,
 }
 
 export default FairService

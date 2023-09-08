@@ -2,7 +2,6 @@ import { ChangeEvent, useState } from 'react'
 import { Check, ChevronDown, ChevronUp } from 'lucide-react'
 import classNames from 'classnames'
 
-import { categoryIcon, categoryLabel } from '@/constants'
 import {
   SelectContainer,
   Label,
@@ -10,12 +9,22 @@ import {
   SelectedValue,
   ArrowIcons,
   Option,
-} from '@/components/Select/styles'
+} from './styles'
 
-export const CategorySelect = () => {
+export type SelectOption = {
+  [id: string]: string
+}
+
+interface SelectProps {
+  name: string
+  label: string
+  placeholder: string
+  options: SelectOption
+}
+
+export const Select = ({ name, label, placeholder, options }: SelectProps) => {
   const [open, setOpen] = useState(false)
   const [selected, setSelected] = useState('')
-  const options = ['bakery', 'vegetable', 'meat', 'fruit', 'drink']
 
   const onChange = (e: ChangeEvent<HTMLInputElement>) => {
     setOpen(false)
@@ -25,14 +34,11 @@ export const CategorySelect = () => {
   return (
     <SelectContainer>
       <div className="select-input">
-        <Label
-          className={classNames({ selected })}
-          htmlFor="options-view-button"
-        >
-          Categoria
+        <Label className={classNames({ selected })} htmlFor={name}>
+          {label}
         </Label>
         <input
-          id="options-view-button"
+          id={name}
           type="checkbox"
           checked={open}
           onChange={(event) => setOpen(event.target.checked)}
@@ -40,7 +46,7 @@ export const CategorySelect = () => {
 
         <SelectDropdown className="select-button">
           <SelectedValue className={classNames({ selected })}>
-            {categoryLabel[selected] ?? 'Selecione a categoria'}
+            {options[selected] ?? placeholder}
           </SelectedValue>
 
           <ArrowIcons>
@@ -54,18 +60,30 @@ export const CategorySelect = () => {
       </div>
 
       <ul className={classNames({ active: open })}>
-        {options.map((option) => (
-          <Option key={option}>
+        <Option>
+          <input
+            type="radio"
+            name={`${name}-item`}
+            value=""
+            data-label={placeholder}
+            onChange={onChange}
+          />
+
+          <span className="label">{placeholder}</span>
+          <Check />
+        </Option>
+
+        {Object.keys(options).map((_id) => (
+          <Option key={_id}>
             <input
               type="radio"
-              name="category"
-              value={option}
-              data-label={categoryLabel[option]}
+              name={`${name}-item`}
+              value={_id}
+              data-label={options[_id]}
               onChange={onChange}
             />
 
-            {categoryIcon[option]}
-            <span className="label">{categoryLabel[option]}</span>
+            <span className="label">{options[_id]}</span>
             <Check />
           </Option>
         ))}
