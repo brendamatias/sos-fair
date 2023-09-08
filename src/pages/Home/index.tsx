@@ -1,8 +1,8 @@
 import { FormEvent, useEffect, useState } from 'react'
-import { MoreVertical, Plus } from 'lucide-react'
+import { Plus } from 'lucide-react'
 import { toast } from 'react-toastify'
 
-import { Input, Select, SelectOption } from '@/components'
+import { Dropdown, Input, Select, SelectOption } from '@/components'
 import {
   Container,
   Form,
@@ -115,9 +115,12 @@ export const Home: React.FC = () => {
                   <span>Valor total</span>
                 </FairPrice>
 
-                <button>
-                  <MoreVertical />
-                </button>
+                <Dropdown
+                  options={[
+                    { label: 'Editar', onClick: () => {} },
+                    { label: 'Remover', onClick: () => {} },
+                  ]}
+                />
               </div>
             </div>
           </FairItem>

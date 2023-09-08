@@ -32,6 +32,7 @@ export const SelectContainer = styled.div`
     background-color: #17171a;
     position: absolute;
     width: 100%;
+    z-index: 3;
 
     &.active {
       display: block;
