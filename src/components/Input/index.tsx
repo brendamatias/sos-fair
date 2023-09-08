@@ -1,23 +1,16 @@
-import { useState } from 'react'
+import { InputHTMLAttributes } from 'react'
 import { Container, Label } from './styles'
 
-interface InputProps {
+interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   id: string
   label: string
 }
 
-export const Input = ({ id, label }: InputProps) => {
-  const [value, setValue] = useState('')
-
+export const Input = ({ id, label, ...props }: InputProps) => {
   return (
     <Container>
       <Label htmlFor={id}>{label}</Label>
-      <input
-        id={id}
-        type="text"
-        value={value}
-        onChange={(event) => setValue(event.target.value)}
-      />
+      <input id={id} type="text" {...props} />
     </Container>
   )
 }

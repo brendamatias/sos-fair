@@ -1,6 +1,7 @@
+import { useEffect, useState } from 'react'
 import { MoreVertical, Plus } from 'lucide-react'
 import { useParams } from 'react-router-dom'
-import { useEffect, useState } from 'react'
+import { toast } from 'react-toastify'
 import classNames from 'classnames'
 
 import { Input, QuantitySelect, CategorySelect } from '@/components'
@@ -35,8 +36,11 @@ export const FairDetails: React.FC = () => {
       const { data } = await FairService.getFair(id)
 
       setFair(data)
-    } catch (error) {
-      console.log(error)
+    } catch (error: any) {
+      toast.error(
+        error?.response?.data?.error?.message ||
+          'Ocorreu um erro, tente novamente',
+      )
     }
   }
 
@@ -45,8 +49,11 @@ export const FairDetails: React.FC = () => {
       const { data } = await FairProductService.getFairProductList(id)
 
       setProducts(data)
-    } catch (error) {
-      console.log(error)
+    } catch (error: any) {
+      toast.error(
+        error?.response?.data?.error?.message ||
+          'Ocorreu um erro, tente novamente',
+      )
     }
   }
 

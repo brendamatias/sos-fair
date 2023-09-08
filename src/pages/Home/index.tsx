@@ -1,5 +1,6 @@
+import { FormEvent, useEffect, useState } from 'react'
 import { MoreVertical, Plus } from 'lucide-react'
-import { useEffect, useState } from 'react'
+import { toast } from 'react-toastify'
 
 import { Input, Select, SelectOption } from '@/components'
 import {
@@ -18,6 +19,9 @@ import FairService from '@/services/fair.service'
 export const Home: React.FC = () => {
   const [fairs, setFairs] = useState<Fair[]>([])
   const [options, setOptions] = useState<SelectOption>({})
+  const [loading, setLoading] = useState(false)
+  const [name, setName] = useState('')
+  const [template, setTemplate] = useState('')
 
   const getFairList = async () => {
     try {
@@ -30,8 +34,37 @@ export const Home: React.FC = () => {
 
       setFairs(data)
       setOptions(optionsFormatted)
-    } catch (error) {
-      console.log(error)
+    } catch (error: any) {
+      toast.error(
+        error?.response?.data?.error?.message ||
+          'Ocorreu um erro, tente novamente',
+      )
+    }
+  }
+
+  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault()
+
+    setLoading(true)
+
+    try {
+      await FairService.createFair({
+        name,
+        template: template || null,
+      })
+
+      toast.success('Feira criada com sucesso!')
+      setLoading(false)
+      setName('')
+      setTemplate('')
+
+      getFairList()
+    } catch (error: any) {
+      setLoading(false)
+      toast.error(
+        error?.response?.data?.error?.message ||
+          'Ocorreu um erro, tente novamente',
+      )
     }
   }
 
@@ -42,17 +75,24 @@ export const Home: React.FC = () => {
   return (
     <Container>
       <h1>Lista de feiras</h1>
-      <Form>
-        <Input id="name" label="Nome" />
+      <Form onSubmit={handleSubmit}>
+        <Input
+          id="name"
+          label="Nome"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+        />
         <Select
           label="Feira de template"
           placeholder="Selecione a feira"
           name="template"
+          value={template}
+          setValue={setTemplate}
           options={options}
         />
 
         <div>
-          <Button>
+          <Button type="submit" disabled={loading || !name}>
             <Plus color="#fff" />
           </Button>
         </div>

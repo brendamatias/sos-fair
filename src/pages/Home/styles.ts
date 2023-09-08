@@ -33,8 +33,13 @@ export const Button = styled.button`
   height: 2.5rem;
   width: 2.5rem;
 
-  &:hover {
+  &:not(:disabled):hover {
     background-color: #523480;
+  }
+
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
   }
 `
 

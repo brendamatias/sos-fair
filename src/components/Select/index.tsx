@@ -1,4 +1,4 @@
-import { ChangeEvent, useState } from 'react'
+import { ChangeEvent, Dispatch, SetStateAction, useState } from 'react'
 import { Check, ChevronDown, ChevronUp } from 'lucide-react'
 import classNames from 'classnames'
 
@@ -18,23 +18,31 @@ export type SelectOption = {
 interface SelectProps {
   name: string
   label: string
+  value: string
+  setValue: Dispatch<SetStateAction<string>>
   placeholder: string
   options: SelectOption
 }
 
-export const Select = ({ name, label, placeholder, options }: SelectProps) => {
+export const Select = ({
+  name,
+  label,
+  placeholder,
+  value,
+  setValue,
+  options,
+}: SelectProps) => {
   const [open, setOpen] = useState(false)
-  const [selected, setSelected] = useState('')
 
   const onChange = (e: ChangeEvent<HTMLInputElement>) => {
     setOpen(false)
-    setSelected(e.target.value)
+    setValue(e.target.value)
   }
 
   return (
     <SelectContainer>
       <div className="select-input">
-        <Label className={classNames({ selected })} htmlFor={name}>
+        <Label className={classNames({ value })} htmlFor={name}>
           {label}
         </Label>
         <input
@@ -45,8 +53,8 @@ export const Select = ({ name, label, placeholder, options }: SelectProps) => {
         />
 
         <SelectDropdown className="select-button">
-          <SelectedValue className={classNames({ selected })}>
-            {options[selected] ?? placeholder}
+          <SelectedValue className={classNames({ value })}>
+            {options[value] ?? placeholder}
           </SelectedValue>
 
           <ArrowIcons>
