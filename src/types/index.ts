@@ -5,10 +5,11 @@ export interface Fair {
   _id: string
   name: string
   status: 'IN_PROGRESS' | 'FINISHED'
+  active: boolean
   createdAt: string
 }
 
-export interface FairProduct {
+export interface Product {
   _id: string
   name: string
   price: number

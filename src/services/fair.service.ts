@@ -13,10 +13,13 @@ const createFair = (payload: {
   template: string | null
 }): Promise<{ data: Fair }> => api.post(`${DOMAIN}`, payload)
 
+const deleteFair = (id: string): Promise<void> => api.delete(`${DOMAIN}/${id}`)
+
 const FairService = {
   getFair,
   getFairList,
   createFair,
+  deleteFair,
 }
 
 export default FairService

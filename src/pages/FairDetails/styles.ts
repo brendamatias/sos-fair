@@ -37,11 +37,12 @@ export const Button = styled.button`
   }
 `
 
-export const Product = styled.li`
+export const ProductItem = styled.li`
   background-color: #17171a;
   border: 1px solid #252529;
   border-radius: 0.5rem;
   padding: 1rem;
+  position: relative;
 
   > div {
     display: grid;
@@ -54,18 +55,6 @@ export const Product = styled.li`
       align-items: center;
       gap: 0.75rem;
       justify-content: right;
-
-      > button {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-
-        > svg {
-          width: 1.25rem;
-          height: 1.25rem;
-          color: #a881e6;
-        }
-      }
     }
   }
 

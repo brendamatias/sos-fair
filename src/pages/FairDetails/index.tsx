@@ -1,15 +1,15 @@
 import { useEffect, useState } from 'react'
-import { MoreVertical, Plus } from 'lucide-react'
+import { Plus } from 'lucide-react'
 import { useParams } from 'react-router-dom'
 import { toast } from 'react-toastify'
 import classNames from 'classnames'
 
-import { Input, QuantitySelect, CategorySelect } from '@/components'
+import { Input, QuantitySelect, CategorySelect, Dropdown } from '@/components'
 import {
   Container,
   Form,
   Button,
-  Product,
+  ProductItem,
   ProductInfo,
   Tag,
   ProductPrice,
@@ -21,15 +21,15 @@ import {
   categoryLabel,
   measureLabel,
 } from '@/constants'
-import { Fair, FairProduct } from '@/types'
+import { Fair, Product } from '@/types'
 import { formatPrice } from '@/utils/format'
 import FairService from '@/services/fair.service'
-import FairProductService from '@/services/fairProduct.service'
+import ProductService from '@/services/product.service'
 
 export const FairDetails: React.FC = () => {
   const { id = '' } = useParams()
   const [fair, setFair] = useState<Fair>()
-  const [products, setProducts] = useState<FairProduct[]>([])
+  const [products, setProducts] = useState<Product[]>([])
 
   const getFair = async () => {
     try {
@@ -44,9 +44,9 @@ export const FairDetails: React.FC = () => {
     }
   }
 
-  const getFairProducts = async () => {
+  const getProducts = async () => {
     try {
-      const { data } = await FairProductService.getFairProductList(id)
+      const { data } = await ProductService.getProductList(id)
 
       setProducts(data)
     } catch (error: any) {
@@ -57,9 +57,23 @@ export const FairDetails: React.FC = () => {
     }
   }
 
+  const deleteProduct = async (productId: string) => {
+    try {
+      await ProductService.deleteProduct(productId, id)
+
+      getProducts()
+      toast.success('Produto deletado com sucesso!')
+    } catch (error: any) {
+      toast.error(
+        error?.response?.data?.error?.message ||
+          'Ocorreu um erro, tente novamente',
+      )
+    }
+  }
+
   useEffect(() => {
     getFair()
-    getFairProducts()
+    getProducts()
   }, [])
 
   return (
@@ -78,7 +92,7 @@ export const FairDetails: React.FC = () => {
       </Form>
       <ul>
         {products.map((product) => (
-          <Product
+          <ProductItem
             key={product.name}
             className={classNames({ bought: product.bought })}
           >
@@ -118,12 +132,18 @@ export const FairDetails: React.FC = () => {
                   {categoryLabel[product.category]}
                 </Tag>
 
-                <button>
-                  <MoreVertical />
-                </button>
+                <Dropdown
+                  options={[
+                    { label: 'Editar', onClick: () => {} },
+                    {
+                      label: 'Remover',
+                      onClick: () => deleteProduct(product._id),
+                    },
+                  ]}
+                />
               </div>
             </div>
-          </Product>
+          </ProductItem>
         ))}
       </ul>
     </Container>

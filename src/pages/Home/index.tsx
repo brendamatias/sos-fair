@@ -23,7 +23,21 @@ export const Home: React.FC = () => {
   const [name, setName] = useState('')
   const [template, setTemplate] = useState('')
 
-  const getFairList = async () => {
+  const deleteFair = async (id: string) => {
+    try {
+      await FairService.deleteFair(id)
+
+      getFairs()
+      toast.success('Feira deletada com sucesso!')
+    } catch (error: any) {
+      toast.error(
+        error?.response?.data?.error?.message ||
+          'Ocorreu um erro, tente novamente',
+      )
+    }
+  }
+
+  const getFairs = async () => {
     try {
       const { data } = await FairService.getFairList()
       const optionsFormatted: SelectOption = {}
@@ -69,7 +83,7 @@ export const Home: React.FC = () => {
   }
 
   useEffect(() => {
-    getFairList()
+    getFairs()
   }, [])
 
   return (
@@ -118,7 +132,10 @@ export const Home: React.FC = () => {
                 <Dropdown
                   options={[
                     { label: 'Editar', onClick: () => {} },
-                    { label: 'Remover', onClick: () => {} },
+                    {
+                      label: 'Remover',
+                      onClick: () => deleteFair(fair._id),
+                    },
                   ]}
                 />
               </div>
