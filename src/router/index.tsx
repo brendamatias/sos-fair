@@ -1,15 +1,28 @@
 import { createBrowserRouter } from 'react-router-dom'
 
-import { Home, FairDetails } from '@/pages'
+import { SignIn, Home, FairDetails } from '@/pages'
+import { PrivateRoute } from './PrivateRoute'
 
 const routes = [
   {
+    path: '/',
+    element: <SignIn />,
+  },
+  {
     path: '/home',
-    element: <Home />,
+    element: (
+      <PrivateRoute>
+        <Home />
+      </PrivateRoute>
+    ),
   },
   {
     path: '/fairs/:id',
-    element: <FairDetails />,
+    element: (
+      <PrivateRoute>
+        <FairDetails />
+      </PrivateRoute>
+    ),
   },
 ]
 

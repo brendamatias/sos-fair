@@ -19,3 +19,10 @@ export interface Product {
   category: Category
   createdAt: string
 }
+
+export interface User {
+  _id: string
+  name: string
+  email: string
+  createdAt: string
+}
