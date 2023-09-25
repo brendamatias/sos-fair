@@ -19,6 +19,11 @@ export const Container = styled.div`
       gap: 0.75rem;
       justify-content: right;
     }
+
+    @media (max-width: 650px) {
+      display: flex;
+      justify-content: space-between;
+    }
   }
 
   &.bought {
@@ -81,6 +86,10 @@ export const ProductPrice = styled.div`
   &.bought {
     opacity: 0.6;
   }
+
+  @media (max-width: 650px) {
+    display: none;
+  }
 `
 
 export const Tag = styled.div`
@@ -100,5 +109,13 @@ export const Tag = styled.div`
 
   &.bought {
     opacity: 0.6;
+  }
+
+  @media (max-width: 650px) {
+    padding: 0.5rem;
+
+    span {
+      display: none;
+    }
   }
 `

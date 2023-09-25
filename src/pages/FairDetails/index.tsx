@@ -78,7 +78,7 @@ export const FairDetails: React.FC = () => {
     try {
       const body = {
         name,
-        qty: parseFloat(quantity) * 100,
+        qty: parseInt(quantity, 10),
         measure,
         category,
         price: parseFloat(price) * 100,

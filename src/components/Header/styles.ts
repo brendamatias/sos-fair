@@ -1,7 +1,7 @@
 import { styled } from 'styled-components'
 
 export const Container = styled.header`
-  background-color: #202024;
+  border-bottom: 1px solid #202024;
 
   > div {
     display: flex;

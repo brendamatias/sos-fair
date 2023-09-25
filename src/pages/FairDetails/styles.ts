@@ -35,6 +35,10 @@ export const Form = styled.form`
       gap: 0.75rem;
       align-items: center;
     }
+
+    @media (max-width: 650px) {
+      flex-wrap: wrap;
+    }
   }
 `
 

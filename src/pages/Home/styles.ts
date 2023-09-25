@@ -131,5 +131,6 @@ export const FairPrice = styled.div`
     display: block;
     font-size: 0.75rem;
     color: #afabb6;
+    white-space: nowrap;
   }
 `

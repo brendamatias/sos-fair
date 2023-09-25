@@ -125,7 +125,7 @@ export const Home: React.FC = () => {
 
               <div className="left">
                 <FairPrice>
-                  <strong>{formatPrice(20000)}</strong>
+                  <strong>{formatPrice(fair.total)}</strong>
                   <span>Valor total</span>
                 </FairPrice>
 

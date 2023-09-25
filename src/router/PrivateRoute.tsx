@@ -1,3 +1,4 @@
+import { Header } from '@/components'
 import { ReactElement } from 'react'
 import { Navigate } from 'react-router-dom'
 
@@ -8,7 +9,13 @@ type PrivateRouteProps = {
 export const PrivateRoute = ({ children }: PrivateRouteProps) => {
   const isLoggedIn = localStorage.getItem('sos-fair')
 
-  if (isLoggedIn) return children
+  if (isLoggedIn)
+    return (
+      <>
+        <Header />
+        {children}
+      </>
+    )
 
   return <Navigate to="/" />
 }

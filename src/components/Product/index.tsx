@@ -55,7 +55,7 @@ export const Product = ({
           <div>
             <strong>{name}</strong>
             <span>
-              {qty / 100}{' '}
+              {qty}{' '}
               {`${measureLabel[measure]}${
                 measure !== 'kilo' && qty > 1 ? 's' : ''
               }`}
@@ -82,7 +82,7 @@ export const Product = ({
             className={classNames({ bought })}
           >
             {categoryIcon[category]}
-            {categoryLabel[category]}
+            <span>{categoryLabel[category]}</span>
           </Tag>
 
           <Dropdown

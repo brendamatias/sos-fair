@@ -6,6 +6,7 @@ export interface Fair {
   name: string
   status: 'IN_PROGRESS' | 'FINISHED'
   active: boolean
+  total: number
   createdAt: string
 }
 
