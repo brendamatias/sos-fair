@@ -16,7 +16,7 @@ export const Dropdown = ({ options }: DropdownProps) => {
   const [open, setOpen] = useState(false)
 
   useEffect(() => {
-    const handleClickOutside = (event) => {
+    const handleClickOutside = (event: any) => {
       if (!ref?.current?.contains(event.target)) {
         setOpen(false)
       }

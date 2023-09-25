@@ -71,8 +71,7 @@ export const Home: React.FC = () => {
       setLoading(false)
       setName('')
       setTemplate('')
-
-      getFairList()
+      getFairs()
     } catch (error: any) {
       setLoading(false)
       toast.error(
