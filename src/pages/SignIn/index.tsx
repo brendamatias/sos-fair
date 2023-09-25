@@ -1,11 +1,13 @@
 import { FormEvent, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
 
 import { Input } from '@/components'
 import { Container, Form, Button } from './styles'
 
 import AuthService from '@/services/auth.service'
-import { useNavigate } from 'react-router-dom'
+
+import logo from '@/assets/logo.svg'
 
 export const SignIn: React.FC = () => {
   const [loading, setLoading] = useState(false)
@@ -41,7 +43,11 @@ export const SignIn: React.FC = () => {
   return (
     <Container>
       <div>
-        <h1>Faça seu login na plataforma</h1>
+        <div>
+          <img src={logo} alt="SOS Feira logo" />
+          <h1>Faça seu login na plataforma</h1>
+        </div>
+
         <Form onSubmit={handleSubmit}>
           <Input
             id="email"
