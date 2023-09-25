@@ -5,48 +5,49 @@ export const Container = styled.div`
   max-width: 768px;
   margin: 0 auto;
 
-  > h1 {
-    font-weight: bold;
-    font-size: 1.5rem;
-    letter-spacing: 0.03rem;
+  > div:first-child {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+
+    > h1 {
+      font-weight: bold;
+      font-size: 1.5rem;
+      letter-spacing: 0.03rem;
+    }
+
+    > button {
+      font-size: 0.875rem;
+      color: #afabb6;
+    }
   }
 
   > ul {
     display: flex;
     flex-direction: column;
     gap: 0.75rem;
+    margin-top: 2rem;
   }
 `
 
-export const Form = styled.form`
+export const SearchContainer = styled.div`
   display: flex;
-  flex-direction: column;
+  align-items: flex-end;
   gap: 0.75rem;
-  margin-top: 2rem;
-  margin-bottom: 2.5rem;
-
-  > .inputs {
-    display: flex;
-    align-items: flex-end;
-    gap: 0.75rem;
-
-    > .buttons {
-      display: flex;
-      gap: 0.75rem;
-      align-items: center;
-    }
-
-    @media (max-width: 650px) {
-      flex-wrap: wrap;
-    }
-  }
+  margin-top: 1rem;
 `
 
 export const Button = styled.button`
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
   background-color: #7450ac;
-  border-radius: 100%;
+  border-radius: 0.375rem;
   height: 2.5rem;
-  width: 2.5rem;
+  padding: 0.75rem 1rem;
+  font-weight: 600;
+  font-size: 0.875rem;
+  color: #fbf9fe;
 
   > svg {
     width: 1rem;
@@ -55,5 +56,13 @@ export const Button = styled.button`
 
   &:hover {
     background-color: #523480;
+  }
+
+  @media (max-width: 650px) {
+    padding: 0.75rem;
+
+    span {
+      display: none;
+    }
   }
 `

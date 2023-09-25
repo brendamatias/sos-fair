@@ -37,7 +37,13 @@ export const Dropdown = ({ options }: DropdownProps) => {
 
       <div className={classNames({ active: open })}>
         {options.map(({ label, onClick }) => (
-          <Button key={label} onClick={onClick}>
+          <Button
+            key={label}
+            onClick={() => {
+              setOpen(false)
+              onClick()
+            }}
+          >
             {label}
           </Button>
         ))}
