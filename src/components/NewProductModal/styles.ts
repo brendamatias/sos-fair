@@ -8,7 +8,7 @@ export const Modal = styled(ReactModal)`
   padding: 1.5rem;
   border-radius: 0.375rem;
   z-index: 99999999;
-  margin: 2rem auto;
+  margin: 0 auto;
   width: 720px;
   left: 0;
   right: 0;
@@ -34,7 +34,6 @@ export const Modal = styled(ReactModal)`
 
   @media (max-width: 720px) {
     width: 100%;
-    margin: 0 auto;
   }
 `
 

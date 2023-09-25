@@ -26,7 +26,7 @@ export const NewProductModal = ({
 
   console.log(product)
   const [name, setName] = useState(product?.name)
-  const [price, setPrice] = useState(product?.price.toString())
+  const [price, setPrice] = useState(((product?.price || 0) / 100).toString())
   const [measure, setMeasure] = useState<Measure>(product?.measure || 'unit')
   const [quantity, setQuantity] = useState<string | undefined>(
     product?.qty.toString(),
@@ -116,7 +116,7 @@ export const NewProductModal = ({
         </div>
 
         <Button type="submit" disabled={loading}>
-          {product?._id ? 'Editar' : 'Adicionar'}
+          {product?._id ? 'Salvar' : 'Cadastrar'}
         </Button>
       </Form>
     </Modal>

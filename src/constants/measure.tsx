@@ -3,3 +3,9 @@ export const measureLabel = {
   liter: 'Litro',
   kilo: 'Kg',
 }
+
+export const measureAbbreviation = {
+  unit: 'Un',
+  liter: 'L',
+  kilo: 'Kg',
+}

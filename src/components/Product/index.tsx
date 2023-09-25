@@ -3,13 +3,13 @@ import { toast } from 'react-toastify'
 import classNames from 'classnames'
 
 import { Dropdown } from '@/components'
-import { Container, ProductInfo, Tag, ProductPrice } from './styles'
+import { Container, ProductInfo, Tag } from './styles'
 import {
   categoryBackground,
   categoryColor,
   categoryIcon,
   categoryLabel,
-  measureLabel,
+  measureAbbreviation,
 } from '@/constants'
 import { Product as ProductType } from '@/types'
 import { formatPrice } from '@/utils/format'
@@ -55,25 +55,14 @@ export const Product = ({
           <div>
             <strong>{name}</strong>
             <span>
-              {qty}{' '}
-              {`${measureLabel[measure]}${
-                measure !== 'kilo' && qty > 1 ? 's' : ''
-              }`}
+              {qty}
+              {measureAbbreviation[measure]} x {formatPrice(price)} ={' '}
+              <strong>{formatPrice(price * qty)}</strong>
             </span>
           </div>
         </ProductInfo>
 
-        <ProductPrice className={classNames({ bought })}>
-          <strong>{formatPrice(price)}</strong>
-          <span>Valor individual</span>
-        </ProductPrice>
-
-        <ProductPrice className={classNames({ bought })}>
-          <strong>{formatPrice(price * qty)}</strong>
-          <span>Valor total</span>
-        </ProductPrice>
-
-        <div className="left">
+        <div>
           <Tag
             style={{
               color: categoryColor[category],
