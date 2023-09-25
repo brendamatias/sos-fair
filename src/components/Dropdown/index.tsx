@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { MoreHorizontal, MoreVertical } from 'lucide-react'
 import classNames from 'classnames'
 
@@ -12,10 +12,25 @@ interface DropdownProps {
 }
 
 export const Dropdown = ({ options }: DropdownProps) => {
+  const ref = useRef<HTMLInputElement>(null)
   const [open, setOpen] = useState(false)
 
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (!ref?.current?.contains(event.target)) {
+        setOpen(false)
+      }
+    }
+
+    document.addEventListener('click', handleClickOutside, true)
+
+    return () => {
+      document.removeEventListener('click', handleClickOutside, true)
+    }
+  }, [])
+
   return (
-    <Container>
+    <Container ref={ref}>
       <DotsButton onClick={() => setOpen(!open)}>
         {open ? <MoreHorizontal /> : <MoreVertical />}
       </DotsButton>

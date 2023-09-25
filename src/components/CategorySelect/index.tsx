@@ -11,24 +11,26 @@ import {
   ArrowIcons,
   Option,
 } from '@/components/Select/styles'
+import { Category } from '@/types'
 
-export const CategorySelect = () => {
+interface CategorySelectProps {
+  value: Category | undefined
+  setValue: React.Dispatch<React.SetStateAction<Category | undefined>>
+}
+
+export const CategorySelect = ({ value, setValue }: CategorySelectProps) => {
   const [open, setOpen] = useState(false)
-  const [selected, setSelected] = useState('')
-  const options = ['bakery', 'vegetable', 'meat', 'fruit', 'drink']
+  const options: Category[] = ['bakery', 'vegetable', 'meat', 'fruit', 'drink']
 
   const onChange = (e: ChangeEvent<HTMLInputElement>) => {
     setOpen(false)
-    setSelected(e.target.value)
+    setValue(e.target.value as Category)
   }
 
   return (
     <SelectContainer>
       <div className="select-input">
-        <Label
-          className={classNames({ selected })}
-          htmlFor="options-view-button"
-        >
+        <Label className={classNames({ value })} htmlFor="options-view-button">
           Categoria
         </Label>
         <input
@@ -39,8 +41,8 @@ export const CategorySelect = () => {
         />
 
         <SelectDropdown className="select-button">
-          <SelectedValue className={classNames({ selected })}>
-            {categoryLabel[selected] ?? 'Selecione a categoria'}
+          <SelectedValue className={classNames({ value })}>
+            {value ? categoryLabel[value] : 'Selecione a categoria'}
           </SelectedValue>
 
           <ArrowIcons>

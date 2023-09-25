@@ -17,6 +17,7 @@ import ProductService from '@/services/product.service'
 
 interface ProductProps extends ProductType {
   refresh: () => Promise<void>
+  handleEdit: () => void
 }
 
 export const Product = ({
@@ -28,6 +29,7 @@ export const Product = ({
   measure,
   category,
   refresh,
+  handleEdit,
 }: ProductProps) => {
   const { id = '' } = useParams()
 
@@ -85,7 +87,7 @@ export const Product = ({
 
           <Dropdown
             options={[
-              { label: 'Editar', onClick: () => {} },
+              { label: 'Editar', onClick: handleEdit },
               {
                 label: 'Remover',
                 onClick: () => deleteProduct(_id),

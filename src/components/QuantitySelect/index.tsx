@@ -11,23 +11,41 @@ import {
   Option,
 } from './styles'
 import { measureLabel } from '@/constants'
+import { Measure } from '@/types'
 
-export const QuantitySelect = () => {
+interface QuantitySelectProps {
+  measure?: Measure
+  setMeasure: React.Dispatch<React.SetStateAction<Measure | undefined>>
+  quantity?: string
+  setQuantity: React.Dispatch<React.SetStateAction<string | undefined>>
+}
+
+export const QuantitySelect = ({
+  measure,
+  setMeasure,
+  quantity,
+  setQuantity,
+}: QuantitySelectProps) => {
   const [open, setOpen] = useState(false)
-  const [selected, setSelected] = useState('')
-  const options = ['unit', 'liter', 'kilo']
+  const options: Measure[] = ['unit', 'liter', 'kilo']
 
   const onChange = (e: ChangeEvent<HTMLInputElement>) => {
     setOpen(false)
-    setSelected(e.target.value)
+    setMeasure(e.target.value as Measure)
   }
 
+  console.log(quantity)
   return (
     <Container>
       <div className="input-container">
         <Label htmlFor="quantity">Quantidade</Label>
 
-        <Input name="quantity" type="number" />
+        <Input
+          name="quantity"
+          type="number"
+          value={quantity}
+          onChange={(event) => setQuantity(event.target.value)}
+        />
       </div>
       <div className="measure">
         <div className="measure-select">
@@ -39,7 +57,7 @@ export const QuantitySelect = () => {
 
           <Select className="select-button">
             <SelectedValue>
-              {selected === 'unit' ? 'Un.' : selected === 'liter' ? 'L' : 'Kg'}
+              {measure === 'unit' ? 'Un.' : measure === 'liter' ? 'L' : 'Kg'}
             </SelectedValue>
 
             <ArrowIcons>

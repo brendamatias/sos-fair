@@ -43,6 +43,7 @@ export const Container = styled.div`
       background-color: #17171a;
       position: absolute;
       width: 100%;
+      z-index: 10;
 
       &.active {
         display: block;

@@ -20,10 +20,16 @@ export const Container = styled.div`
 
 export const Form = styled.form`
   display: flex;
-  align-items: flex-end;
+  flex-direction: column;
   gap: 0.75rem;
   margin-top: 2rem;
   margin-bottom: 2.5rem;
+
+  > .inputs {
+    display: flex;
+    align-items: flex-end;
+    gap: 0.75rem;
+  }
 `
 
 export const Button = styled.button`

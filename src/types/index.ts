@@ -1,5 +1,5 @@
-type Measure = 'unit' | 'liter' | 'kilo'
-type Category = 'fruit' | 'bakery' | 'vegetable' | 'drink' | 'meat'
+export type Measure = 'unit' | 'liter' | 'kilo'
+export type Category = 'fruit' | 'bakery' | 'vegetable' | 'drink' | 'meat'
 
 export interface Fair {
   _id: string
