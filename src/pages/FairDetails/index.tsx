@@ -1,5 +1,5 @@
 import { FormEvent, useEffect, useState } from 'react'
-import { Plus, Save } from 'lucide-react'
+import { Plus, Save, X } from 'lucide-react'
 import { useParams } from 'react-router-dom'
 import { toast } from 'react-toastify'
 
@@ -16,11 +16,11 @@ export const FairDetails: React.FC = () => {
   const [fair, setFair] = useState<Fair>()
   const [products, setProducts] = useState<ProductType[]>([])
   const [loading, setLoading] = useState(false)
-  const [edit, setEdit] = useState(false)
+  const [productId, setProductId] = useState('')
 
   const [name, setName] = useState('')
   const [price, setPrice] = useState('0')
-  const [measure, setMeasure] = useState<Measure>()
+  const [measure, setMeasure] = useState<Measure>('unit')
   const [quantity, setQuantity] = useState<string>()
   const [category, setCategory] = useState<Category>()
 
@@ -53,18 +53,19 @@ export const FairDetails: React.FC = () => {
   const clearForm = () => {
     setName('')
     setQuantity(undefined)
-    setMeasure(undefined)
+    setMeasure('unit')
     setCategory(undefined)
     setPrice('0')
+    setProductId('')
   }
 
   const handleEdit = (product: ProductType) => {
+    setProductId(product._id)
     setName(product.name)
     setPrice((product.price / 100).toString())
     setMeasure(product.measure)
     setCategory(product.category)
     setQuantity(product.qty.toString())
-    setEdit(true)
   }
 
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
@@ -75,16 +76,27 @@ export const FairDetails: React.FC = () => {
     setLoading(true)
 
     try {
-      await ProductService.createProduct(id, {
+      const body = {
         name,
-        qty: parseInt(quantity, 10),
+        qty: parseFloat(quantity) * 100,
         measure,
         category,
         price: parseFloat(price) * 100,
-      })
+      }
+
+      if (productId) {
+        await ProductService.updateProduct(id, productId, body)
+      } else {
+        await ProductService.createProduct(id, body)
+      }
 
       setLoading(false)
       getProducts()
+
+      toast.success(
+        `Produto ${productId ? 'editado' : 'cadastrado'} com sucesso`,
+      )
+
       clearForm()
     } catch (error: any) {
       setLoading(false)
@@ -126,10 +138,22 @@ export const FairDetails: React.FC = () => {
             setQuantity={setQuantity}
           />
           <CategorySelect value={category} setValue={setCategory} />
-          <div>
-            <Button type="submit" disabled={loading}>
-              {edit ? <Save color="#fff" /> : <Plus color="#fff" />}
-            </Button>
+
+          <div className="buttons">
+            {productId ? (
+              <>
+                <Button type="submit" disabled={loading}>
+                  <Save />
+                </Button>
+                <Button>
+                  <X />
+                </Button>
+              </>
+            ) : (
+              <Button type="submit" disabled={loading}>
+                <Plus />
+              </Button>
+            )}
           </div>
         </div>
       </Form>

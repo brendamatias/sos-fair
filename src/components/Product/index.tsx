@@ -55,7 +55,7 @@ export const Product = ({
           <div>
             <strong>{name}</strong>
             <span>
-              {qty}{' '}
+              {qty / 100}{' '}
               {`${measureLabel[measure]}${
                 measure !== 'kilo' && qty > 1 ? 's' : ''
               }`}

@@ -14,8 +14,8 @@ import { measureLabel } from '@/constants'
 import { Measure } from '@/types'
 
 interface QuantitySelectProps {
-  measure?: Measure
-  setMeasure: React.Dispatch<React.SetStateAction<Measure | undefined>>
+  measure: Measure
+  setMeasure: React.Dispatch<React.SetStateAction<Measure>>
   quantity?: string
   setQuantity: React.Dispatch<React.SetStateAction<string | undefined>>
 }
@@ -57,7 +57,7 @@ export const QuantitySelect = ({
 
           <Select className="select-button">
             <SelectedValue>
-              {measure === 'unit' ? 'Un.' : measure === 'liter' ? 'L' : 'Kg'}
+              {measure === 'kilo' ? 'Kg.' : measure === 'liter' ? 'L' : 'Un.'}
             </SelectedValue>
 
             <ArrowIcons>

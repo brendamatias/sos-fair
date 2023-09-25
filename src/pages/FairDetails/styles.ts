@@ -29,6 +29,12 @@ export const Form = styled.form`
     display: flex;
     align-items: flex-end;
     gap: 0.75rem;
+
+    > .buttons {
+      display: flex;
+      gap: 0.75rem;
+      align-items: center;
+    }
   }
 `
 
@@ -37,6 +43,11 @@ export const Button = styled.button`
   border-radius: 100%;
   height: 2.5rem;
   width: 2.5rem;
+
+  > svg {
+    width: 1rem;
+    color: #fff;
+  }
 
   &:hover {
     background-color: #523480;
