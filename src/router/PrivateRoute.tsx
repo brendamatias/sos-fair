@@ -1,6 +1,7 @@
-import { Header } from '@/components'
 import { ReactElement } from 'react'
 import { Navigate } from 'react-router-dom'
+
+import { Header } from '@/components'
 
 type PrivateRouteProps = {
   children: ReactElement

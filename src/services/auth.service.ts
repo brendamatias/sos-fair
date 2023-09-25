@@ -1,4 +1,5 @@
 import { User } from '../types'
+
 import api from './api'
 
 const DOMAIN = 'sessions'

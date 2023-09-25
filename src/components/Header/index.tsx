@@ -1,6 +1,8 @@
-import logo from '@/assets/logo.svg'
-import { Container } from './styles'
 import { Link, useNavigate } from 'react-router-dom'
+
+import logo from '@/assets/logo.svg'
+
+import { Container } from './styles'
 
 export const Header = () => {
   const navigate = useNavigate()

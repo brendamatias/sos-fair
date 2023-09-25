@@ -1,9 +1,9 @@
 import { useParams } from 'react-router-dom'
 import { toast } from 'react-toastify'
 import classNames from 'classnames'
+import { Check } from 'lucide-react'
 
 import { Dropdown } from '@/components'
-import { Container, ProductInfo, Tag } from './styles'
 import {
   categoryBackground,
   categoryColor,
@@ -11,11 +11,11 @@ import {
   categoryLabel,
   measureAbbreviation,
 } from '@/constants'
+import ProductService from '@/services/product.service'
 import { Product as ProductType } from '@/types'
 import { formatPrice } from '@/utils/format'
-import ProductService from '@/services/product.service'
-import { useState } from 'react'
-import { Check } from 'lucide-react'
+
+import { Container, ProductInfo, Tag } from './styles'
 
 interface ProductProps extends ProductType {
   refresh: () => Promise<void>

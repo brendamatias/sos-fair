@@ -19,7 +19,7 @@ module.exports = {
     ecmaVersion: 'latest',
     sourceType: 'module',
   },
-  plugins: ['react', 'react-refresh', 'jsx-a11y', '@typescript-eslint'],
+  plugins: ['react', 'react-refresh', 'jsx-a11y', '@typescript-eslint', 'simple-import-sort'],
   rules: {
     'prettier/prettier': [
       'error',
@@ -56,4 +56,31 @@ module.exports = {
       [require.resolve('@typescript-eslint/parser')]: ['.ts', '.tsx', '.d.ts'],
     },
   },
+  overrides: [
+    // override 'simple-import-sort' config
+    {
+      'files': ['*.js', '*.jsx', '*.ts', '*.tsx'],
+      'rules': {
+        'simple-import-sort/imports': [
+          'error',
+          {
+            'groups': [
+              // Packages `react` related packages come first.
+              ['^react', '^@?\\w'],
+              // Internal packages.
+              ['^(@|components)(/.*|$)'],
+              // Side effect imports.
+              ['^\\u0000'],
+              // Parent imports. Put `..` last.
+              ['^\\.\\.(?!/?$)', '^\\.\\./?$'],
+              // Other relative imports. Put same-folder imports and `.` last.
+              ['^\\./(?=.*/)(?!/?$)', '^\\.(?!/?$)', '^\\./?$'],
+              // Style imports.
+              ['^.+\\.?(css)$']
+            ]
+          }
+        ]
+      }
+    }
+  ]
 }

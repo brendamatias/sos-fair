@@ -1,15 +1,15 @@
 import { useEffect, useState } from 'react'
-import { Search } from 'lucide-react'
 import { useParams } from 'react-router-dom'
 import { toast } from 'react-toastify'
+import { Search } from 'lucide-react'
 
 import { Input, NewProductModal } from '@/components'
-import { Container, Button, SearchContainer } from './styles'
-
-import { Fair, Product as ProductType } from '@/types'
+import { Product } from '@/components/Product'
 import FairService from '@/services/fair.service'
 import ProductService from '@/services/product.service'
-import { Product } from '@/components/Product'
+import { Fair, Product as ProductType } from '@/types'
+
+import { Button, Container, SearchContainer } from './styles'
 
 export const FairDetails: React.FC = () => {
   const { id = '' } = useParams()

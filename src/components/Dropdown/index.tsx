@@ -1,8 +1,8 @@
 import { useEffect, useRef, useState } from 'react'
-import { MoreHorizontal, MoreVertical } from 'lucide-react'
 import classNames from 'classnames'
+import { MoreHorizontal, MoreVertical } from 'lucide-react'
 
-import { Container, DotsButton, Button } from './styles'
+import { Button, Container, DotsButton } from './styles'
 
 interface DropdownProps {
   options: {

@@ -19,6 +19,10 @@ export const Container = styled.div`
     > button {
       font-size: 0.875rem;
       color: #afabb6;
+
+      &:hover {
+        color: #7450ac;
+      }
     }
   }
 

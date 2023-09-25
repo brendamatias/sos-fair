@@ -2,12 +2,11 @@ import { FormEvent, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
 
+import logo from '@/assets/logo.svg'
 import { Input } from '@/components'
-import { Container, Form, Button } from './styles'
-
 import AuthService from '@/services/auth.service'
 
-import logo from '@/assets/logo.svg'
+import { Button, Container, Form } from './styles'
 
 export const SignIn: React.FC = () => {
   const [loading, setLoading] = useState(false)

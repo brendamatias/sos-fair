@@ -1,16 +1,16 @@
 import { ChangeEvent, useState } from 'react'
-import { Check, ChevronDown, ChevronUp } from 'lucide-react'
 import classNames from 'classnames'
+import { Check, ChevronDown, ChevronUp } from 'lucide-react'
 
-import { categoryIcon, categoryLabel } from '@/constants'
 import {
-  SelectContainer,
+  ArrowIcons,
   Label,
+  Option,
+  SelectContainer,
   SelectDropdown,
   SelectedValue,
-  ArrowIcons,
-  Option,
 } from '@/components/Select/styles'
+import { categoryIcon, categoryLabel } from '@/constants'
 import { Category } from '@/types'
 
 interface CategorySelectProps {

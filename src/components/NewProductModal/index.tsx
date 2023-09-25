@@ -1,11 +1,13 @@
-import { X } from 'lucide-react'
 import { FormEvent, useState } from 'react'
 import { toast } from 'react-toastify'
+import { X } from 'lucide-react'
+
+import ProductService from '@/services/product.service'
+import { Category, Measure, Product } from '@/types'
 
 import { CategorySelect, Input, QuantitySelect } from '..'
-import { Modal, Form, Button } from './styles'
-import { Category, Measure, Product } from '@/types'
-import ProductService from '@/services/product.service'
+
+import { Button, Form, Modal } from './styles'
 
 interface NewProductModalProps {
   fairId: string

@@ -1,20 +1,20 @@
 import { FormEvent, useEffect, useState } from 'react'
-import { Plus } from 'lucide-react'
 import { toast } from 'react-toastify'
+import { Plus } from 'lucide-react'
 
 import { Dropdown, Input, Select, SelectOption } from '@/components'
-import {
-  Container,
-  Form,
-  Button,
-  FairItem,
-  FairInfo,
-  FairPrice,
-} from './styles'
-
+import FairService from '@/services/fair.service'
 import { Fair } from '@/types'
 import { formatDate, formatPrice } from '@/utils/format'
-import FairService from '@/services/fair.service'
+
+import {
+  Button,
+  Container,
+  FairInfo,
+  FairItem,
+  FairPrice,
+  Form,
+} from './styles'
 
 export const Home: React.FC = () => {
   const [fairs, setFairs] = useState<Fair[]>([])

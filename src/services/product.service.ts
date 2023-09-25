@@ -1,4 +1,5 @@
 import { Category, Measure, Product } from '../types'
+
 import api from './api'
 
 const DOMAIN = (fair: string) => `fairs/${fair}/products`

@@ -1,17 +1,19 @@
 import { ChangeEvent, useState } from 'react'
-import { Check, ChevronDown, ChevronUp } from 'lucide-react'
 import classNames from 'classnames'
+import { Check, ChevronDown, ChevronUp } from 'lucide-react'
+
+import { measureLabel } from '@/constants'
+import { Measure } from '@/types'
+
 import {
+  ArrowIcons,
   Container,
   Input,
   Label,
+  Option,
   Select,
   SelectedValue,
-  ArrowIcons,
-  Option,
 } from './styles'
-import { measureLabel } from '@/constants'
-import { Measure } from '@/types'
 
 interface QuantitySelectProps {
   measure: Measure

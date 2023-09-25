@@ -1,4 +1,5 @@
 import { Fair } from '../types'
+
 import api from './api'
 
 const DOMAIN = 'fairs'

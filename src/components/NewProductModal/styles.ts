@@ -1,5 +1,5 @@
-import { styled } from 'styled-components'
 import ReactModal from 'react-modal'
+import { styled } from 'styled-components'
 
 export const Modal = styled(ReactModal)`
   position: fixed;

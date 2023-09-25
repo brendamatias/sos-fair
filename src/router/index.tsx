@@ -1,6 +1,7 @@
 import { createBrowserRouter } from 'react-router-dom'
 
-import { SignIn, Home, FairDetails } from '@/pages'
+import { FairDetails, Home, SignIn } from '@/pages'
+
 import { PrivateRoute } from './PrivateRoute'
 
 const routes = [

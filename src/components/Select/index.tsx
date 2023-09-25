@@ -1,14 +1,14 @@
 import { ChangeEvent, Dispatch, SetStateAction, useState } from 'react'
-import { Check, ChevronDown, ChevronUp } from 'lucide-react'
 import classNames from 'classnames'
+import { Check, ChevronDown, ChevronUp } from 'lucide-react'
 
 import {
-  SelectContainer,
+  ArrowIcons,
   Label,
+  Option,
+  SelectContainer,
   SelectDropdown,
   SelectedValue,
-  ArrowIcons,
-  Option,
 } from './styles'
 
 export type SelectOption = {
