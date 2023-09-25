@@ -29,9 +29,9 @@ export const QuantitySelect = ({
   const [open, setOpen] = useState(false)
   const options: Measure[] = ['unit', 'liter', 'kilo']
 
-  const onChange = (e: ChangeEvent<HTMLInputElement>) => {
+  const onChange = (event: ChangeEvent<HTMLInputElement>) => {
     setOpen(false)
-    setMeasure(e.target.value as Measure)
+    setMeasure(event.target.value as Measure)
   }
 
   console.log(quantity)

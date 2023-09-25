@@ -22,9 +22,9 @@ export const CategorySelect = ({ value, setValue }: CategorySelectProps) => {
   const [open, setOpen] = useState(false)
   const options: Category[] = ['bakery', 'vegetable', 'meat', 'fruit', 'drink']
 
-  const onChange = (e: ChangeEvent<HTMLInputElement>) => {
+  const onChange = (event: ChangeEvent<HTMLInputElement>) => {
     setOpen(false)
-    setValue(e.target.value as Category)
+    setValue(event.target.value as Category)
   }
 
   return (

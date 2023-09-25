@@ -4,11 +4,12 @@ import api from './api'
 const DOMAIN = (fair: string) => `fairs/${fair}/products`
 
 type CreateOrEditProduct = {
-  name: string
-  qty: number
-  measure: Measure
-  category: Category
-  price: number
+  name?: string
+  qty?: number
+  measure?: Measure
+  category?: Category
+  price?: number
+  bought?: boolean
 }
 
 const getProductList = (fair: string): Promise<{ data: Product[] }> =>

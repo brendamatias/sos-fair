@@ -14,6 +14,8 @@ import {
 import { Product as ProductType } from '@/types'
 import { formatPrice } from '@/utils/format'
 import ProductService from '@/services/product.service'
+import { useState } from 'react'
+import { Check } from 'lucide-react'
 
 interface ProductProps extends ProductType {
   refresh: () => Promise<void>
@@ -33,6 +35,21 @@ export const Product = ({
 }: ProductProps) => {
   const { id = '' } = useParams()
 
+  const handleCheck = async (productId: string, bought: boolean) => {
+    try {
+      await ProductService.updateProduct(id, productId, {
+        bought,
+      })
+
+      refresh()
+    } catch (error: any) {
+      toast.error(
+        error?.response?.data?.error?.message ||
+          'Ocorreu um erro, tente novamente',
+      )
+    }
+  }
+
   const deleteProduct = async (productId: string) => {
     try {
       await ProductService.deleteProduct(productId, id)
@@ -51,7 +68,12 @@ export const Product = ({
     <Container className={classNames({ bought })}>
       <div>
         <ProductInfo className={classNames({ bought })}>
-          <input type="checkbox" checked={bought} />
+          <button
+            className={classNames({ bought })}
+            onClick={() => handleCheck(_id, !bought)}
+          >
+            {bought && <Check size={12} />}
+          </button>
           <div>
             <strong>{name}</strong>
             <span>

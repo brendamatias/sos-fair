@@ -34,9 +34,9 @@ export const Select = ({
 }: SelectProps) => {
   const [open, setOpen] = useState(false)
 
-  const onChange = (e: ChangeEvent<HTMLInputElement>) => {
+  const onChange = (event: ChangeEvent<HTMLInputElement>) => {
     setOpen(false)
-    setValue(e.target.value)
+    setValue(event.target.value)
   }
 
   return (

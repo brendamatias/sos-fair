@@ -93,7 +93,7 @@ export const Home: React.FC = () => {
           id="name"
           label="Nome"
           value={name}
-          onChange={(e) => setName(e.target.value)}
+          onChange={(event) => setName(event.target.value)}
         />
         <Select
           label="Feira de template"

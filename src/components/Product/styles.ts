@@ -37,8 +37,24 @@ export const ProductInfo = styled.div`
   align-items: center;
   gap: 1rem;
 
-  > input {
+  > button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     margin: 0.25rem;
+    width: 1rem;
+    height: 1rem;
+    border: 1px solid #a881e6;
+    border-radius: 0.13rem;
+
+    > svg {
+      color: #fbf9fe;
+    }
+
+    &.bought {
+      background-color: #2f723d;
+      border-color: #2f723d;
+    }
   }
 
   > div {

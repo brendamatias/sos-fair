@@ -54,14 +54,14 @@ export const SignIn: React.FC = () => {
             label="E-mail"
             value={email}
             type="email"
-            onChange={(e) => setEmail(e.target.value)}
+            onChange={(event) => setEmail(event.target.value)}
           />
           <Input
             id="password"
             label="Senha"
             value={password}
             type="password"
-            onChange={(e) => setPassword(e.target.value)}
+            onChange={(event) => setPassword(event.target.value)}
           />
 
           <Button type="submit" disabled={loading || !email || !password}>
