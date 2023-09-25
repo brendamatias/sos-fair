@@ -11,6 +11,11 @@ export const Container = styled.header`
     margin: 0 auto;
     padding: 1.5rem;
 
+    > a {
+      display: flex;
+      align-items: center;
+    }
+
     > button {
       background-color: #7450ac;
       padding: 0.75rem 2rem;

@@ -1,6 +1,6 @@
 import logo from '@/assets/logo.svg'
 import { Container } from './styles'
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 export const Header = () => {
   const navigate = useNavigate()
@@ -13,7 +13,9 @@ export const Header = () => {
   return (
     <Container>
       <div>
-        <img src={logo} alt="SOS Feira logo" />
+        <Link to="/home">
+          <img src={logo} alt="SOS Feira logo" />
+        </Link>
 
         <button onClick={logout}>Sair</button>
       </div>

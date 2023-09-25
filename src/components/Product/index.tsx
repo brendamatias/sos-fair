@@ -69,7 +69,7 @@ export const Product = ({
         </ProductPrice>
 
         <ProductPrice className={classNames({ bought })}>
-          <strong>{formatPrice(price)}</strong>
+          <strong>{formatPrice(price * qty)}</strong>
           <span>Valor total</span>
         </ProductPrice>
 
