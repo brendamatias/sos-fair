@@ -1,4 +1,4 @@
-export type Measure = 'unit' | 'liter' | 'kilo'
+export type Measure = 'un' | 'l' | 'kg'
 export type Category = 'fruit' | 'bakery' | 'vegetable' | 'drink' | 'meat'
 
 export interface Fair {

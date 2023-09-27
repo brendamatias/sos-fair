@@ -29,7 +29,7 @@ export const NewProductModal = ({
   console.log(product)
   const [name, setName] = useState(product?.name)
   const [price, setPrice] = useState(((product?.price || 0) / 100).toString())
-  const [measure, setMeasure] = useState<Measure>(product?.measure || 'unit')
+  const [measure, setMeasure] = useState<Measure>(product?.measure || 'un')
   const [quantity, setQuantity] = useState<string | undefined>(
     product?.qty.toString(),
   )

@@ -2,7 +2,7 @@ export const formatPrice = (price: number) =>
   new Intl.NumberFormat('pt-BR', {
     style: 'currency',
     currency: 'BRL',
-  }).format(price / 100)
+  }).format(price)
 
 export const formatDate = (date: string) => {
   const dateFormatted = new Date(date)
@@ -11,4 +11,8 @@ export const formatDate = (date: string) => {
   const year = dateFormatted.getFullYear()
 
   return `${day}/${month}/${year}`
+}
+
+export const capitalize = (text: string) => {
+  return text[0].toUpperCase() + text.slice(1)
 }

@@ -1,9 +1,10 @@
 import { styled } from 'styled-components'
 
 export const Container = styled.div`
-  padding: 2rem 1.5rem 5.5rem 1.5rem;
+  padding: 2rem 1rem 5.5rem 1rem;
   max-width: 768px;
   margin: 0 auto;
+  margin-top: 73px;
 
   > div:first-child {
     display: flex;

@@ -4,6 +4,7 @@ import { Check, ChevronDown, ChevronUp } from 'lucide-react'
 
 import { measureLabel } from '@/constants'
 import { Measure } from '@/types'
+import { capitalize } from '@/utils/format'
 
 import {
   ArrowIcons,
@@ -29,7 +30,7 @@ export const QuantitySelect = ({
   setQuantity,
 }: QuantitySelectProps) => {
   const [open, setOpen] = useState(false)
-  const options: Measure[] = ['unit', 'liter', 'kilo']
+  const options: Measure[] = ['un', 'l', 'kg']
 
   const onChange = (event: ChangeEvent<HTMLInputElement>) => {
     setOpen(false)
@@ -58,9 +59,7 @@ export const QuantitySelect = ({
           />
 
           <Select className="select-button">
-            <SelectedValue>
-              {measure === 'kilo' ? 'Kg.' : measure === 'liter' ? 'L' : 'Un.'}
-            </SelectedValue>
+            <SelectedValue>{measure}</SelectedValue>
 
             <ArrowIcons>
               <ChevronDown
@@ -85,9 +84,7 @@ export const QuantitySelect = ({
                 onChange={onChange}
               />
 
-              <span className="label">
-                {option === 'unit' ? 'Un.' : option === 'liter' ? 'L' : 'Kg'}
-              </span>
+              <span className="label">{capitalize(option)}</span>
               <Check />
             </Option>
           ))}

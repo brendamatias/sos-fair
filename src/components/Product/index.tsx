@@ -9,11 +9,10 @@ import {
   categoryColor,
   categoryIcon,
   categoryLabel,
-  measureAbbreviation,
 } from '@/constants'
 import ProductService from '@/services/product.service'
 import { Product as ProductType } from '@/types'
-import { formatPrice } from '@/utils/format'
+import { capitalize, formatPrice } from '@/utils/format'
 
 import { Container, ProductInfo, Tag } from './styles'
 
@@ -78,7 +77,7 @@ export const Product = ({
             <strong>{name}</strong>
             <span>
               {qty}
-              {measureAbbreviation[measure]} x {formatPrice(price)} ={' '}
+              {capitalize(measure)} x {formatPrice(price)} ={' '}
               <strong>{formatPrice(price * qty)}</strong>
             </span>
           </div>
