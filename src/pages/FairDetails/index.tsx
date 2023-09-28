@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom'
 import { toast } from 'react-toastify'
 import { Search } from 'lucide-react'
 
-import { Input, NewProductModal } from '@/components'
+import { Input, NewProductModal, QrcodeScanner } from '@/components'
 import { Product } from '@/components/Product'
 import FairService from '@/services/fair.service'
 import ProductService from '@/services/product.service'
@@ -17,8 +17,8 @@ export const FairDetails: React.FC = () => {
   const [products, setProducts] = useState<ProductType[]>([])
   const [currentProduct, setCurrentProduct] = useState<ProductType>()
   const [search, setSearch] = useState('')
-
   const [isModalOpen, setIsModalOpen] = useState(false)
+  const [scannerOpen, setScannerOpen] = useState(false)
 
   const getFair = async () => {
     try {
@@ -61,8 +61,11 @@ export const FairDetails: React.FC = () => {
       <Container>
         <div>
           <h1>{fair?.name}</h1>
-          <button onClick={() => setIsModalOpen(true)}>
+          {/* <button onClick={() => setIsModalOpen(true)}>
             Adicionar produto
+          </button> */}
+          <button type="button" onClick={() => setScannerOpen(true)}>
+            Adicionar produto por NF
           </button>
         </div>
 
@@ -102,6 +105,14 @@ export const FairDetails: React.FC = () => {
           isOpen={isModalOpen}
           closeModal={() => setIsModalOpen(false)}
           onSubmit={getProducts}
+        />
+      )}
+
+      {scannerOpen && (
+        <QrcodeScanner
+          isOpen={scannerOpen}
+          closeModal={() => setScannerOpen(false)}
+          fairId="64c6f8c625ae5cde0d44e78a"
         />
       )}
     </>

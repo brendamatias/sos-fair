@@ -21,6 +21,11 @@ const createProduct = (
   payload: CreateOrEditProduct,
 ): Promise<{ data: Product }> => api.post(`${DOMAIN(fair)}`, payload)
 
+const createProducts = (
+  fair: string,
+  url: string,
+): Promise<{ data: Product }> => api.post(`${DOMAIN(fair)}/nf`, { url })
+
 const updateProduct = (
   fair: string,
   product: string,
@@ -33,6 +38,7 @@ const deleteProduct = (id: string, fair: string): Promise<void> =>
 const ProductService = {
   getProductList,
   createProduct,
+  createProducts,
   updateProduct,
   deleteProduct,
 }
