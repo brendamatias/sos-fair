@@ -65,7 +65,7 @@ export const FairDetails: React.FC = () => {
             Adicionar produto
           </button> */}
           <button type="button" onClick={() => setScannerOpen(true)}>
-            Adicionar produto por NF
+            Adicionar produto NF
           </button>
         </div>
 
@@ -113,6 +113,7 @@ export const FairDetails: React.FC = () => {
           isOpen={scannerOpen}
           closeModal={() => setScannerOpen(false)}
           fairId="64c6f8c625ae5cde0d44e78a"
+          onSubmit={getProducts}
         />
       )}
     </>
