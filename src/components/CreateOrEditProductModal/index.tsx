@@ -9,7 +9,7 @@ import { CategorySelect, Input, QuantitySelect } from '..'
 
 import { Button, Form, Modal } from './styles'
 
-interface NewProductModalProps {
+interface CreateOrEditProductModalProps {
   fairId: string
   product?: Product
   isOpen: boolean
@@ -17,18 +17,18 @@ interface NewProductModalProps {
   onSubmit: () => void
 }
 
-export const NewProductModal = ({
+export const CreateOrEditProductModal = ({
   fairId,
   product,
   isOpen,
   closeModal,
   onSubmit,
-}: NewProductModalProps) => {
+}: CreateOrEditProductModalProps) => {
   const [loading, setLoading] = useState(false)
 
   console.log(product)
   const [name, setName] = useState(product?.name)
-  const [price, setPrice] = useState(((product?.price || 0) / 100).toString())
+  const [price, setPrice] = useState((product?.price || 0).toString())
   const [measure, setMeasure] = useState<Measure>(product?.measure || 'un')
   const [quantity, setQuantity] = useState<string | undefined>(
     product?.qty.toString(),
@@ -50,7 +50,7 @@ export const NewProductModal = ({
         qty: parseInt(quantity, 10),
         measure,
         category,
-        price: parseFloat(price) * 100,
+        price: parseFloat(price),
       }
 
       if (product?._id) {
