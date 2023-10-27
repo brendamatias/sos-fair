@@ -5,6 +5,7 @@ export const Container = styled.div`
   padding: 2rem 1rem 5.5rem 1rem;
   max-width: 768px;
   margin: 0 auto;
+  margin-top: 103px;
 
   > h1 {
     font-weight: bold;

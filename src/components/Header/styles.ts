@@ -3,10 +3,10 @@ import { styled } from 'styled-components'
 
 export const Container = styled.header`
   border-bottom: 1px solid #202024;
-  /* position: fixed; */
+  position: fixed;
   top: 0;
   width: 100%;
-  z-index: 99999;
+  z-index: 999;
   background-color: #0c0c0d;
 
   > div {

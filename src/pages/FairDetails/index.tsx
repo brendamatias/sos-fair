@@ -19,6 +19,7 @@ export const FairDetails: React.FC = () => {
   const [search, setSearch] = useState('')
   const [isModalOpen, setIsModalOpen] = useState(false)
   // const [scannerOpen, setScannerOpen] = useState(false)
+  const [filteredItems, setFilteredItems] = useState<ProductType[]>([])
 
   const getFair = async () => {
     try {
@@ -38,6 +39,7 @@ export const FairDetails: React.FC = () => {
       const { data } = await ProductService.getProductList(id)
 
       setProducts(data)
+      setFilteredItems(data)
     } catch (error: any) {
       toast.error(
         error?.response?.data?.error?.message ||
@@ -51,10 +53,36 @@ export const FairDetails: React.FC = () => {
     setIsModalOpen(true)
   }
 
+  const orderByChecked = (products: ProductType[]) => {
+    const checkedList = products.filter((item) => item.bought)
+    const notCheckedList = products.filter((item) => !item.bought)
+    const ordered = [...notCheckedList, ...checkedList]
+
+    return ordered
+  }
+
+  const filterBySearch = (query: string) => {
+    setSearch(query)
+
+    if (!query) return setFilteredItems(products)
+
+    const filtered = products.filter(
+      (item) => item.name.toLowerCase().indexOf(query.toLowerCase()) !== -1,
+    )
+
+    setFilteredItems(orderByChecked(filtered))
+  }
+
   useEffect(() => {
     getFair()
     getProducts()
   }, [])
+
+  useEffect(() => {
+    if (search === '') {
+      setFilteredItems(products)
+    }
+  }, [search])
 
   return (
     <>
@@ -71,7 +99,7 @@ export const FairDetails: React.FC = () => {
             id="name"
             placeholder="Buscar produto"
             value={search}
-            onChange={(event) => setSearch(event.target.value)}
+            onChange={(e) => filterBySearch(e.target.value)}
           />
 
           <div>
@@ -83,7 +111,7 @@ export const FairDetails: React.FC = () => {
         </SearchContainer>
 
         <ul>
-          {products.map((product) => (
+          {filteredItems.map((product) => (
             <li key={product.name}>
               <Product
                 {...product}

@@ -46,3 +46,19 @@ input::-webkit-inner-spin-button {
 a {
  text-decoration: none;
 }
+
+
+*::-webkit-scrollbar {
+  width: 5px;
+  background-color: #0C0C0D;
+}
+
+*::-webkit-scrollbar-thumb {
+  background: #888;
+  height: 30px;
+  border-radius: 2.5px;
+}
+
+*::-webkit-scrollbar-track-piece {
+  display: none;
+}

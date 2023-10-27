@@ -18,6 +18,8 @@ export const Header = () => {
 
   // TO DO: Remover
   const getProducts = async () => {
+    if (!id) return
+
     try {
       const { data } = await ProductService.getProductList(id)
 
